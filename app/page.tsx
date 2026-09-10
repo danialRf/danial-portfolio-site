@@ -64,7 +64,7 @@ export default function Home() {
           <p>A selection of AI-generated video work spanning cinematic scenes, branded content, and visual experimentation.</p>
         </div>
         <video controls preload="metadata" poster="/work-12.png">
-          <source src="/danial-showreel.mp4" type="video/mp4" />
+          <source src="/danial-showreel-compatible.mp4" type="video/mp4" />
           Your browser does not support video playback.
         </video>
       </section>
