@@ -1,118 +1,39 @@
-import { ArrowDown, ArrowUpRight, Mail, Play } from 'lucide-react';
+'use client';
+import { useEffect, useState } from 'react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Menu, Play, X } from 'lucide-react';
 
-const work = [
-  { src: '/work-05.png', alt: 'AI-generated editorial fashion portrait in warm brown tones', label: 'Editorial fashion' },
-  { src: '/work-04.png', alt: 'AI-generated cafe drink advertisement', label: 'Food & beverage' },
-  { src: '/work-09.png', alt: 'AI-generated miniature alchemist scene inside an animal skull', label: 'Concept worldbuilding' },
-  { src: '/work-11.png', alt: 'AI-generated cinematic portrait and behind-the-scenes series', label: 'Cinematic characters' },
-  { src: '/work-12.png', alt: 'AI-generated black-and-white celebrity editorial scene', label: 'Campaign storytelling' },
-  { src: '/work-08.png', alt: 'AI-generated abstract environments and installation imagery', label: 'Abstract realism' },
+const projects = [
+  { src:'/work-05.webp',title:'Chroma',category:'FASHION / EDITORIAL',number:'01',className:'project-feature',focus:'70% 48%',challenge:'Build a fashion story with a consistent world, attitude, and photographic language.',approach:'Art direction through controlled palette, styling, framing, and iterative character development.',output:'Editorial image series and campaign-ready compositions.' },
+  { src:'/work-04.webp',title:'Night Pour',category:'PRODUCT / ADVERTISING',number:'02',className:'project-tall',focus:'49% 42%',challenge:'Turn a familiar café product into a sharp, high-impact advertising visual.',approach:'A graphic lighting system and tightly controlled product composition built for instant recognition.',output:'Key visual and social campaign concept.' },
+  { src:'/work-07.webp',title:'Velocity',category:'AUTOMOTIVE / CONCEPT',number:'03',className:'project-wide',focus:'38% 72%',challenge:'Create an automotive image that feels composed as a campaign, not a one-off generation.',approach:'Editorial scale, disciplined negative space, and a deliberately surreal human element.',output:'Hero image and campaign art direction.' },
+  { src:'/work-09.webp',title:'The Alchemist’s Refuge',category:'CINEMATIC / WORLDBUILDING',number:'04',className:'project-portrait',focus:'71% 53%',challenge:'Make a miniature fantasy environment feel tactile, inhabited, and cinematic.',approach:'Layered environmental storytelling with material, light, and scale held consistently.',output:'Concept world and cinematic keyframes.' },
+  { src:'/work-11.webp',title:'Tailored Silence',category:'CHARACTER / CINEMATIC',number:'05',className:'project-pair',focus:'20% 63%',challenge:'Develop a recurring character across narrative frames without losing photographic credibility.',approach:'Consistent wardrobe, lighting, lens language, and atmosphere across the visual sequence.',output:'Character system and story-led stills.' },
+  { src:'/work-12.webp',title:'Controlled Escape',category:'CAMPAIGN / STORYTELLING',number:'06',className:'project-pair',focus:'54% 54%',challenge:'Reframe iconic glamour through a contemporary, controlled visual narrative.',approach:'Monochrome art direction, cinematic cropping, and a clear campaign-level point of view.',output:'Editorial campaign concept.' },
+];
+const services = [
+  ['01','AI video / commercials','Concept-to-cut visual sequences for ads, launches, social, and pitch films.'],
+  ['02','Product & campaign visuals','A coherent visual world—not a folder of disconnected images.'],
+  ['03','Fashion / editorial','Distinctive talent, styling, locations, and image systems for editorial stories.'],
+  ['04','Creative AI direction','Visual strategy, workflow design, shot planning, and quality control.'],
+  ['05','Rapid creative production','Fast, focused iterations when a campaign or pitch cannot wait.'],
+  ['06','AI-assisted experiences','Lightweight interactive concepts that bring campaign worlds online.'],
 ];
 
-const courses = [
-  ['AI Video Creation 2026 Pro', '2,474 students', 'Runway, Sora, Veo, Wan', 'https://www.udemy.com/course/runway-ai-full-course-for-stunning-videos-ads-scenes/'],
-  ['AI Animation Mastery', '1,155 students', 'Cinematic shots & consistency', 'https://www.udemy.com/course/ai-animation-mastery-sora-2-veo-31-wan-25-higgsfield/'],
-  ['AI Presentation Mastery', '4.6 rating', 'ChatGPT, Canva & visual prompting', 'https://www.udemy.com/course/ai-presentation-mastery-chatgpt-canva-for-slide-creation/'],
-];
-
-export default function Home() {
-  return (
-    <main>
-      <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Danial Roshanfekr, home">DR<span>.</span></a>
-        <nav aria-label="Primary navigation">
-          <a href="#work">Work</a><a href="#services">Services</a><a href="#experience">Experience</a>
-        </nav>
-        <a className="header-cta" href="mailto:d.roshanfekr@gmail.com">Start a project <ArrowUpRight size={15} /></a>
-      </header>
-
-      <section className="hero" id="top">
-        <div className="eyebrow"><span /> Generative AI creator & educator</div>
-        <h1>AI visuals that feel <em>art-directed,</em><br />not automated.</h1>
-        <p className="hero-copy">I create cinematic AI video, realistic campaign imagery, and visual concepts for brands, studios, and creative teams.</p>
-        <div className="hero-actions">
-          <a className="button button-dark" href="mailto:d.roshanfekr@gmail.com?subject=Project%20inquiry">Discuss a project <ArrowUpRight size={17} /></a>
-          <a className="button button-light" href="#reel"><Play size={15} fill="currentColor" /> Watch showreel</a>
-        </div>
-        <div className="hero-meta" aria-label="Career highlights">
-          <div><strong>3,963</strong><span>Udemy learners</span></div>
-          <div><strong>174</strong><span>Instructor reviews</span></div>
-          <div><strong>Remote</strong><span>Available worldwide</span></div>
-        </div>
-        <a className="scroll-cue" href="#work" aria-label="Scroll to selected work"><ArrowDown size={18} /></a>
-      </section>
-
-      <section className="section" id="work">
-        <div className="section-heading">
-          <div><span className="section-index">01</span><h2>Selected work</h2></div>
-          <p>Every image shown here is AI-generated and developed through intentional prompting, iteration, composition, and finishing.</p>
-        </div>
-        <div className="work-grid">
-          {work.map((item, index) => (
-            <figure className={`work-card work-${index + 1}`} key={item.src}>
-              <img src={item.src} alt={item.alt} loading={index > 1 ? 'lazy' : 'eager'} />
-              <figcaption><span>{String(index + 1).padStart(2, '0')}</span>{item.label}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="reel-section" id="reel">
-        <div className="reel-copy">
-          <span className="section-index">02</span>
-          <h2>Motion, pacing,<br />and visual continuity.</h2>
-          <p>A selection of AI-generated video work spanning cinematic scenes, branded content, and visual experimentation.</p>
-        </div>
-        <video controls preload="metadata" poster="/work-12.png">
-          <source src="/danial-showreel-compatible.mp4" type="video/mp4" />
-          Your browser does not support video playback.
-        </video>
-      </section>
-
-      <section className="section services" id="services">
-        <div className="section-heading">
-          <div><span className="section-index">03</span><h2>What I can deliver</h2></div>
-          <p>Focused, production-ready creative support. Available for a paid test, one-off campaign, or ongoing collaboration.</p>
-        </div>
-        <div className="service-list">
-          <article><span>01</span><h3>AI video & animation</h3><p>Concepts, storyboards, shot prompts, image-to-video, character continuity, and polished short-form sequences.</p></article>
-          <article><span>02</span><h3>Campaign visuals</h3><p>Product imagery, editorial portraits, ad concepts, and cohesive visual systems for social and digital campaigns.</p></article>
-          <article><span>03</span><h3>Creative AI direction</h3><p>Tool selection, repeatable prompting workflows, visual quality control, and practical training for creative teams.</p></article>
-          <article><span>04</span><h3>Rapid AI prototypes</h3><p>Fast experiments that combine generative AI with lightweight websites and interactive campaign concepts.</p></article>
-        </div>
-      </section>
-
-      <section className="experience" id="experience">
-        <div className="experience-intro">
-          <span className="section-index">04</span>
-          <p className="kicker">Teaching sharpens the craft.</p>
-          <h2>Practical AI education for nearly 4,000 learners.</h2>
-          <p>My Udemy courses turn fast-moving creative tools into clear, project-based workflows across AI video, animation, imagery, prompting, and design.</p>
-          <a href="https://www.udemy.com/user/danial-roshanfekr/" target="_blank" rel="noreferrer">View instructor profile <ArrowUpRight size={16} /></a>
-        </div>
-        <div className="course-list">
-          {courses.map(([title, stat, detail, href], index) => (
-            <a href={href} target="_blank" rel="noreferrer" key={title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <div><h3>{title}</h3><p>{detail}</p></div>
-              <strong>{stat}</strong><ArrowUpRight size={18} />
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <footer>
-        <div>
-          <p>Available now for remote freelance work.</p>
-          <h2>Have a visual idea?<br /><em>Let’s make it real.</em></h2>
-        </div>
-        <div className="footer-links">
-          <a href="mailto:d.roshanfekr@gmail.com"><Mail size={17} /> d.roshanfekr@gmail.com</a>
-          <a href="https://www.linkedin.com/in/danial-roshanfekr-a722641b5" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={16} /></a>
-          <a href="https://www.udemy.com/user/danial-roshanfekr/" target="_blank" rel="noreferrer">Udemy <ArrowUpRight size={16} /></a>
-        </div>
-        <p className="copyright">© 2026 Danial Roshanfekr. AI-generated work, human-directed.</p>
-      </footer>
-    </main>
-  );
+export default function Home(){
+ const [reelOpen,setReelOpen]=useState(false); const [activeProject,setActiveProject]=useState<(typeof projects)[number]|null>(null); const [menuOpen,setMenuOpen]=useState(false);
+ useEffect(()=>{document.body.style.overflow=reelOpen||activeProject||menuOpen?'hidden':'';return()=>{document.body.style.overflow=''}},[reelOpen,activeProject,menuOpen]);
+ return <main>
+  <header className="site-header"><a className="wordmark" href="#top" aria-label="Danial Roshanfekr, home">DANIAL<br/>ROSHANFEKR</a><nav aria-label="Primary navigation"><a href="#work">Work</a><a href="#reel">Reel</a><a href="#services">Capabilities</a><a href="#about">About</a></nav><a className="header-cta" href="mailto:d.roshanfekr@gmail.com?subject=Project%20inquiry">Start a project <ArrowUpRight size={14}/></a><button className="menu-toggle" onClick={()=>setMenuOpen(true)} aria-label="Open menu"><Menu/></button></header>
+  <section className="hero" id="top"><div className="hero-visual" aria-hidden="true"><img src="/work-05.webp" alt=""/></div><div className="hero-shade"/><div className="hero-topline"><span>GENERATIVE AI CREATOR &amp; EDUCATOR</span><span>AVAILABLE WORLDWIDE · 2026</span></div><h1>AI VISUALS<br/>THAT FEEL <em>ART-DIRECTED,</em><br/>NOT AUTOMATED.</h1><div className="hero-bottom"><p className="hero-copy">Cinematic AI video and campaign imagery for brands, studios, and creative teams.</p><div className="hero-actions"><a className="button button-light" href="#work">View selected work <ArrowDown size={16}/></a><a className="button button-accent" href="mailto:d.roshanfekr@gmail.com?subject=Project%20inquiry">Start a project <ArrowUpRight size={16}/></a></div></div><div className="hero-meta"><span>3,963+ LEARNERS WORLDWIDE</span><span>AI FILM · FASHION · CAMPAIGNS</span></div></section>
+  <section className="intro" aria-label="Creative direction statement"><div className="section-tag"><span>00</span> THE PRACTICE</div><p>I build <em>visual systems</em>—characters, environments, products, and motion that belong to the same world.</p><div className="intro-side">FROM FIRST FRAME<br/>TO FINAL CUT</div></section>
+  <section className="work-section" id="work"><div className="section-header"><div className="section-tag"><span>01</span> SELECTED WORK</div><p>Campaign thinking across image, motion, and worldbuilding.</p></div><div className="project-grid">{projects.map(p=><button className={`project ${p.className}`} key={p.title} onClick={()=>setActiveProject(p)} aria-label={`View ${p.title} project`}><span className="project-image"><img src={p.src} alt={`${p.title}, ${p.category.toLowerCase()}`} loading={p.number==='01'?'eager':'lazy'} style={{objectPosition:p.focus}}/></span><span className="project-info"><span>{p.number} / {p.category}</span><strong>{p.title}</strong><ArrowUpRight/></span></button>)}</div></section>
+  <section className="reel-section" id="reel"><div className="section-header light"><div className="section-tag"><span>02</span> MOTION</div><p>AI-generated video · cinematic scenes · visual experimentation</p></div><button className="reel-trigger" onClick={()=>setReelOpen(true)} aria-label="Watch showreel"><video muted playsInline preload="metadata" poster="/work-12.webp" aria-hidden="true"><source src="/danial-showreel-compatible.mp4#t=0.5" type="video/mp4"/></video><span className="reel-overlay"/><span className="reel-title">WATCH<br/><em>SHOWREEL</em></span><span className="play-disc"><Play fill="currentColor"/><small>02:30</small></span></button></section>
+  <section className="services" id="services"><div className="section-header"><div className="section-tag"><span>03</span> CAPABILITIES</div><p>Built around the outcome you need.</p></div><div className="service-intro"><h2>FROM A SINGLE<br/>KEY VISUAL TO A<br/><em>COMPLETE WORLD.</em></h2><p>Available for focused commissions, campaign support, and ongoing creative collaboration.</p></div><div className="service-list">{services.map(([no,title,copy])=><article key={no}><span>{no}</span><h3>{title}</h3><p>{copy}</p><ArrowRight/></article>)}</div></section>
+  <section className="about" id="about"><div className="about-image"><img src="/work-03.webp" alt="Detailed black-and-white AI portrait study" loading="lazy"/></div><div className="about-copy"><div className="section-tag"><span>04</span> ABOUT</div><h2>TASTE IS THE<br/><em>DIFFERENCE.</em></h2><p>I’m Danial Roshanfekr, a generative AI creator and educator. My work combines art direction, storytelling, and production-minded workflows to make AI imagery feel deliberate—not accidental.</p><p>Teaching keeps the process sharp. I translate fast-moving tools into repeatable creative systems for a global audience.</p><a href="https://www.udemy.com/user/danial-roshanfekr/" target="_blank" rel="noreferrer">View Udemy profile <ArrowUpRight/></a></div></section>
+  <section className="proof" aria-label="Credibility"><div><strong>3,963+</strong><span>LEARNERS</span></div><div><strong>174</strong><span>REVIEWS</span></div><div><strong>GLOBAL</strong><span>AUDIENCE</span></div></section>
+  <footer><div className="section-tag"><span>05</span> START A PROJECT</div><p className="availability"><i/> AVAILABLE FOR SELECT FREELANCE PROJECTS</p><h2>LET’S BUILD<br/>SOMETHING PEOPLE<br/><em>REMEMBER.</em></h2><a className="footer-email" href="mailto:d.roshanfekr@gmail.com?subject=Let’s%20build%20something%20memorable">d.roshanfekr@gmail.com <ArrowUpRight/></a><div className="footer-bottom"><span>© 2026 DANIAL ROSHANFEKR</span><div><a href="https://www.linkedin.com/in/danial-roshanfekr-a722641b5" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="https://www.udemy.com/user/danial-roshanfekr/" target="_blank" rel="noreferrer">UDEMY ↗</a><a href="#top">BACK TO TOP ↑</a></div></div></footer>
+  {menuOpen&&<div className="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation"><button onClick={()=>setMenuOpen(false)} aria-label="Close menu"><X/></button>{[['WORK','#work'],['SHOWREEL','#reel'],['CAPABILITIES','#services'],['ABOUT','#about']].map(([label,href],i)=><a key={href} href={href} onClick={()=>setMenuOpen(false)}><span>0{i+1}</span>{label}</a>)}<a className="menu-contact" href="mailto:d.roshanfekr@gmail.com">START A PROJECT <ArrowUpRight/></a></div>}
+  {activeProject&&<div className="project-modal" role="dialog" aria-modal="true" aria-label={`${activeProject.title} project details`}><button className="modal-close" onClick={()=>setActiveProject(null)} aria-label="Close project"><X/></button><div className="modal-image"><img src={activeProject.src} alt={`${activeProject.title} project overview`}/></div><div className="modal-copy"><div className="section-tag"><span>{activeProject.number}</span> {activeProject.category}</div><h2>{activeProject.title}</h2><dl><div><dt>CHALLENGE</dt><dd>{activeProject.challenge}</dd></div><div><dt>APPROACH</dt><dd>{activeProject.approach}</dd></div><div><dt>OUTPUT</dt><dd>{activeProject.output}</dd></div></dl><a href="mailto:d.roshanfekr@gmail.com?subject=Project%20inquiry">Create something like this <ArrowUpRight/></a></div></div>}
+  {reelOpen&&<div className="reel-modal" role="dialog" aria-modal="true" aria-label="Danial Roshanfekr showreel"><button className="modal-close" onClick={()=>setReelOpen(false)} aria-label="Close showreel"><X/></button><div className="reel-frame"><video controls autoPlay playsInline poster="/work-12.webp"><source src="/danial-showreel-compatible.mp4" type="video/mp4"/>Your browser does not support this video. <a href="/danial-showreel-compatible.mp4">Download the showreel</a>.</video></div></div>}
+ </main>
 }
